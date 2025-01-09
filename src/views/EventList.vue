@@ -8,16 +8,14 @@ const props = defineProps(["page"]);
 const events = ref(null);
 const totalEvents = ref(0);
 
-const page = computed(() => props.page);
-
 const hasNextPage = computed(() => {
 	const totalPages = Math.ceil(totalEvents.value / 2);
-	return page.value < totalPages;
+	return props.page < totalPages;
 });
 
 const fetchEvents = () => {
 	events.value = null;
-	EventService.getEvents(2, page.value)
+	EventService.getEvents(2, props.page)
 		.then((response) => {
 			events.value = response.data;
 			totalEvents.value = response.headers["x-total-count"];
@@ -32,7 +30,7 @@ onMounted(() => {
 });
 
 watch(
-	() => page.value,
+	() => props.page,
 	() => fetchEvents()
 );
 </script>
