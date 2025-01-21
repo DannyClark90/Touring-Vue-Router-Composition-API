@@ -14,7 +14,6 @@ const hasNextPage = computed(() => {
 });
 
 const fetchEvents = () => {
-	events.value = null;
 	EventService.getEvents(2, props.page)
 		.then((response) => {
 			events.value = response.data;
