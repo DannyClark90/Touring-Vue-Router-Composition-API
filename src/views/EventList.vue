@@ -3,7 +3,7 @@ import EventCard from "@/components/EventCard.vue";
 import EventService from "@/services/EventService.js";
 import { onMounted, ref } from "vue";
 
-const events = ref("");
+const events = ref(null);
 
 onMounted(() => {
   EventService.getEvents()
