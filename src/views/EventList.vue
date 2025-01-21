@@ -1,7 +1,7 @@
 <script setup>
-import { ref, onMounted, computed, watch, defineProps } from "vue";
 import EventCard from "@/components/EventCard.vue";
 import EventService from "@/services/EventService.js";
+import { computed, defineProps, onMounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 
 const props = defineProps(["page"]);
@@ -17,7 +17,6 @@ const hasNextPage = computed(() => {
 });
 
 const fetchEvents = () => {
-	events.value = null;
 	EventService.getEvents(2, props.page)
 		.then((response) => {
 			events.value = response.data;
