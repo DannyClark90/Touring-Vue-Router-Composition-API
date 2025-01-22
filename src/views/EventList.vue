@@ -33,7 +33,10 @@ onMounted(() => {
 
 watch(
 	() => props.page,
-	() => fetchEvents()
+	() => {
+		events.value = null;
+		fetchEvents();
+	}
 );
 </script>
 
